@@ -969,7 +969,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.77941173, b: 0.44852942, a: 1}
-  m_Intensity: 1.2
+  m_Intensity: 0.5
   m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1008,7 +1008,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -3443,7 +3443,7 @@ LightingSettings:
   m_AlbedoBoost: 1
   m_IndirectOutputScale: 1
   m_UsingShadowmask: 1
-  m_BakeBackend: 0
+  m_BakeBackend: 1
   m_LightmapMaxSize: 1024
   m_BakeResolution: 40
   m_Padding: 2
@@ -10538,7 +10538,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.63235295, g: 0.78701824, b: 1, a: 1}
-  m_Intensity: 1.25
+  m_Intensity: 0.5
   m_Range: 500
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -10577,7 +10577,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
