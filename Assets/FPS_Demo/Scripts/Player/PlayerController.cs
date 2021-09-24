@@ -34,7 +34,12 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateMovement()
     {
+#if UNITY_EDITOR
+        var dir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+#else
         var dir = Dpad.Instance.InputVector.y * transform.forward;
+#endif
+
 
         m_speed = dir.magnitude;
 
@@ -45,7 +50,12 @@ public class PlayerController : MonoBehaviour
     }
     private void UpdateAction()
     {
-        m_animator.SetBool(PlayerConst.FireStateHash, FireButtonController.Instance.IsFire);
+        m_animator.SetBool(PlayerConst.FireStateHash, FireButtonController.Instance.IsPressed);
+
+        if (GrenadeButtonController.Instance.IsPressed)
+        {
+            m_animator.SetTrigger(PlayerConst.GrenadeStateHash);
+        }
     }
 
     private void UpdateAnimation()

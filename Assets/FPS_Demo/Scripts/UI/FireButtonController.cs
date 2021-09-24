@@ -3,16 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class FireButtonController : SingletonMonoBehaviour<FireButtonController>, IPointerUpHandler, IPointerDownHandler
+public class FireButtonController : BaseButtonController
 {
-    public bool IsFire { get; set; }
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        IsFire = true;
-    }
+    private static FireButtonController m_instance;
 
-    public void OnPointerUp(PointerEventData eventData)
+    public static FireButtonController Instance
     {
-        IsFire = false;
+        get
+        {
+            if(m_instance == null)
+            {
+                m_instance = (FireButtonController)FindObjectOfType(typeof(FireButtonController));
+
+                if (m_instance == null)
+                {
+                    GameObject singleton = new GameObject();
+                    m_instance = singleton.AddComponent<FireButtonController>();
+                }
+            }
+
+            return m_instance;
+        }
     }
 }

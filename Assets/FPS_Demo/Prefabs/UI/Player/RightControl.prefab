@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4954567147950012291}
   - component: {fileID: 6561083320840707287}
-  - component: {fileID: 6658289527182175664}
   m_Layer: 5
   m_Name: RightControl
   m_TagString: Untagged
@@ -47,20 +46,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1476649019419492469}
   m_CullTransparentMesh: 1
---- !u!114 &6658289527182175664
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1476649019419492469}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b8f9774ff8e7f449927adcce559f3de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_btnShot: {fileID: 3961069653007814268}
-  m_btnGrenade: {fileID: 9167271191443830601}
 --- !u!1 &1487017004151395770
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,6 +134,7 @@ GameObject:
   - component: {fileID: 621721190515379334}
   - component: {fileID: 7713177770598572870}
   - component: {fileID: 9167271191443830601}
+  - component: {fileID: 1008588638838403749}
   m_Layer: 5
   m_Name: Grenade
   m_TagString: Untagged
@@ -257,6 +243,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1008588638838403749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4300387617303918509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f46e2a201e91de54394ec9a9b11576c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6557268370943697291
 GameObject:
   m_ObjectHideFlags: 0

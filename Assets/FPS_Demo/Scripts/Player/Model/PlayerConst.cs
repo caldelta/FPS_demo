@@ -9,4 +9,5 @@ public class PlayerConst
 
     public static readonly int RunStateHash = Animator.StringToHash("speed");
     public static readonly int FireStateHash = Animator.StringToHash("fire");
+    public static readonly int GrenadeStateHash = Animator.StringToHash("grenade");
 }
