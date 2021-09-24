@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        var dir = new Vector3(0, 0, Dpad.Instance.InputVector.y);
+        var dir = Dpad.Instance.InputVector.y * transform.forward;
 
         m_rigidBody.MovePosition(m_rigidBody.position + dir * Time.deltaTime * PlayerConst.MOVEMENT_SPEED);
 
