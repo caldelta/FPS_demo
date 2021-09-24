@@ -12,12 +12,22 @@ public class PlayerController : MonoBehaviour
 
     private float m_speed;
 
+    [SerializeField]
+    private GameObject m_casingBullet;
+    [SerializeField]
+    private Transform m_casingPoint;
 
     // Start is called before the first frame update
     void Start()
     {
+    }
 
-
+    private bool IsCurrentAnimationEnd
+    {
+        get
+        {
+            return m_animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f;
+        }
     }
 
     // Update is called once per frame
@@ -39,8 +49,6 @@ public class PlayerController : MonoBehaviour
 #else
         var dir = Dpad.Instance.InputVector.y * transform.forward;
 #endif
-
-
         m_speed = dir.magnitude;
 
         m_rigidBody.MovePosition(m_rigidBody.position + dir * Time.deltaTime * PlayerConst.MOVEMENT_SPEED);
@@ -50,16 +58,30 @@ public class PlayerController : MonoBehaviour
     }
     private void UpdateAction()
     {
-        m_animator.SetBool(PlayerConst.FireStateHash, FireButtonController.Instance.IsPressed);
+        if(FireButtonController.Instance.IsPressed && IsCurrentAnimationEnd && ObjectPooler.SharedInstance.IsAvailable)
+        {            
+            var go = ObjectPooler.SharedInstance.GetPooledObject("CasingBullet");
 
-        if (GrenadeButtonController.Instance.IsPressed)
-        {
-            m_animator.SetTrigger(PlayerConst.GrenadeStateHash);
+            go.SetActive(true);
+            go.GetComponent<CasingBullet>().Setup();
+
+            go.transform.position = m_casingPoint.position;
+            go.transform.SetParent(m_casingPoint);
+
+            
+            
         }
     }
 
     private void UpdateAnimation()
     {
         m_animator.SetFloat(PlayerConst.RunStateHash, m_speed);
+
+        m_animator.SetBool(PlayerConst.FireStateHash, FireButtonController.Instance.IsPressed);
+
+        if (GrenadeButtonController.Instance.IsPressed)
+        {
+            m_animator.SetTrigger(PlayerConst.GrenadeStateHash);
+        }
     }
 }
