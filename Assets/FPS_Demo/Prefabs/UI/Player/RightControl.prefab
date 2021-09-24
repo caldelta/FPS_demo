@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4954567147950012291}
   - component: {fileID: 6561083320840707287}
+  - component: {fileID: 6658289527182175664}
   m_Layer: 5
   m_Name: RightControl
   m_TagString: Untagged
@@ -46,6 +47,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1476649019419492469}
   m_CullTransparentMesh: 1
+--- !u!114 &6658289527182175664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476649019419492469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b8f9774ff8e7f449927adcce559f3de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_btnShot: {fileID: 3961069653007814268}
+  m_btnGrenade: {fileID: 9167271191443830601}
 --- !u!1 &1487017004151395770
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,7 +150,7 @@ GameObject:
   - component: {fileID: 7713177770598572870}
   - component: {fileID: 9167271191443830601}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Grenade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -254,8 +269,9 @@ GameObject:
   - component: {fileID: 1013867645083144112}
   - component: {fileID: 446888764660428177}
   - component: {fileID: 3961069653007814268}
+  - component: {fileID: 7617558430100633684}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Shot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -362,6 +378,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7617558430100633684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6557268370943697291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b65021a9e0b76840a7e303925cc5d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7962352940807259203
 GameObject:
   m_ObjectHideFlags: 0
