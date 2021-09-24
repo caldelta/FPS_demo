@@ -21,6 +21,7 @@ public class BuildAndroid : BaseBuild
     [MenuItem("Tool/Build/Android/Debug")]
     public static void AndroidBuildDebug()
     {
+        SetupKeystoreOfAndroid();
         var config = CreateBuildConfig(kPlatform, kDevBuild, kBuildName);
         Build(config);
     }
