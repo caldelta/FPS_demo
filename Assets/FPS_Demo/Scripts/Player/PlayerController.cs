@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
     }
     private void UpdateAction()
     {
-        if(FireButtonController.Instance.IsPressed && IsCurrentAnimationEnd && ObjectPooler.SharedInstance.IsAvailable)
+        if(FireButtonController.Instance.IsPressed && IsCurrentAnimationEnd && ObjectPooler.SharedInstance.IsAvailable("CasingBullet"))
         {            
             var go = ObjectPooler.SharedInstance.GetPooledObject("CasingBullet");
 

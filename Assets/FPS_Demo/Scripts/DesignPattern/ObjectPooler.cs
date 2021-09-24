@@ -22,12 +22,9 @@ public class ObjectPooler : MonoBehaviour
         SharedInstance = this;
     }
 
-    public bool IsAvailable
+    public bool IsAvailable(string tag)
     {
-        get
-        {
-            return GetPooledObject("CasingBullet") != null;
-        }
+        return GetPooledObject(tag) != null;        
     }
 
     // Use this for initialization
