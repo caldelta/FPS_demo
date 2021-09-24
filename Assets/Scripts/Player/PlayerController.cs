@@ -7,8 +7,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Rigidbody m_rigidBody;
 
-    [SerializeField]
-    private const float SPEED = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +19,9 @@ public class PlayerController : MonoBehaviour
     {
         var dir = new Vector3(0, 0, Dpad.Instance.InputVector.y);
 
-        m_rigidBody.MovePosition(transform.position + dir * Time.deltaTime * SPEED);
+        m_rigidBody.MovePosition(m_rigidBody.position + dir * Time.deltaTime * PlayerConst.MOVEMENT_SPEED);
+
+        var rot = Quaternion.Euler(0, Dpad.Instance.InputVector.x * Time.deltaTime * PlayerConst.ROTATION_SPEED, 0);
+        m_rigidBody.MoveRotation(m_rigidBody.rotation * rot);
     }
 }
