@@ -10,4 +10,6 @@ public class PlayerConst
     public static readonly int RunStateHash = Animator.StringToHash("speed");
     public static readonly int FireStateHash = Animator.StringToHash("fire");
     public static readonly int GrenadeStateHash = Animator.StringToHash("grenade");
+
+    public static readonly Vector3 CrossHairPos = new Vector3(Screen.width >> 1, Screen.height >> 1);
 }

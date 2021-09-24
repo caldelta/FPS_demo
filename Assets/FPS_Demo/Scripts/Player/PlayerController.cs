@@ -17,6 +17,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Transform m_casingPoint;
 
+    [SerializeField]
+    private GameObject m_impactHole;
+
+    private RaycastHit[] bulletHits = new RaycastHit[1];
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,17 +64,9 @@ public class PlayerController : MonoBehaviour
     private void UpdateAction()
     {
         if(FireButtonController.Instance.IsPressed && IsCurrentAnimationEnd && ObjectPooler.SharedInstance.IsAvailable("CasingBullet"))
-        {            
-            var go = ObjectPooler.SharedInstance.GetPooledObject("CasingBullet");
-
-            go.SetActive(true);
-            go.GetComponent<CasingBullet>().Setup();
-
-            go.transform.position = m_casingPoint.position;
-            go.transform.SetParent(m_casingPoint);
-
-            
-            
+        {
+            SpawnCasingBullet();
+            Fire();
         }
     }
 
@@ -82,6 +79,27 @@ public class PlayerController : MonoBehaviour
         if (GrenadeButtonController.Instance.IsPressed)
         {
             m_animator.SetTrigger(PlayerConst.GrenadeStateHash);
+        }
+    }
+
+    private void SpawnCasingBullet()
+    {
+        var go = ObjectPooler.SharedInstance.GetPooledObject("CasingBullet");
+
+        go.SetActive(true);
+        go.GetComponent<CasingBullet>().Setup();
+
+        go.transform.position = m_casingPoint.position;
+        go.transform.SetParent(m_casingPoint);
+    }
+
+    private void Fire()
+    {
+        var ray = Camera.main.ScreenPointToRay(PlayerConst.CrossHairPos);
+        if (Physics.RaycastNonAlloc(ray, bulletHits) > 0)
+        {
+            Debug.LogError(bulletHits[0].collider.gameObject.name);
+            Instantiate(m_impactHole, bulletHits[0].point, Quaternion.LookRotation(bulletHits[0].normal));
         }
     }
 }
