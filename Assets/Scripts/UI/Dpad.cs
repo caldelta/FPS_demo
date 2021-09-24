@@ -84,19 +84,16 @@ public class Dpad : SingletonMonoBehaviour<Dpad>, IPointerUpHandler, IPointerDow
                 ? direction.normalized
                 : direction / (Background.sizeDelta.x / 2f);
 
-            var inputX = InputVector.x;
-            var inputY = InputVector.y;
-
-            if (Mathf.Abs(inputX) > Mathf.Abs(inputY))
+            if (Mathf.Abs(InputVector.x) > Mathf.Abs(InputVector.y))
             {
-                inputY = 0;
+                InputVector = new Vector2(InputVector.x, 0);
             }
             else
             {
-                inputX = 0;
+                InputVector = new Vector2(0, InputVector.y);
             }
 
-            Handle.anchoredPosition = (new Vector2(inputX, inputY) * Background.sizeDelta.x / 2f) * HandleRange;
+            Handle.anchoredPosition = (InputVector * Background.sizeDelta.x / 2f) * HandleRange;
         }
     }
 
