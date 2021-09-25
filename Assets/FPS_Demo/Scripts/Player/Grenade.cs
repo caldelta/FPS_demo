@@ -28,7 +28,7 @@ public class Grenade : MonoBehaviour
         if(m_lifeTime >= LIFE_TIME)
         {
             Instantiate(m_explosiveVfx, transform.position, transform.rotation);
-            Collider[] colliders = Physics.OverlapSphere(transform.position, 5, EnvironmentConst.DAMAGE_LAYER | EnvironmentConst.BARREL_LAYER);
+            Collider[] colliders = Physics.OverlapSphere(transform.position, 5, EnvironmentConst.DAMAGE_LAYER | EnvironmentConst.BARREL_LAYER | EnvironmentConst.ENEMY_LAYER);
             foreach (Collider col in colliders)
             {
                   var hitEnemy = col.GetComponent<EnemyHealth>();
@@ -38,6 +38,12 @@ public class Grenade : MonoBehaviour
                 var hitBarrel = col.GetComponent<ExplosiveBarrel>();
                 if (hitBarrel != null)
                     hitBarrel.SetHitType(HitType.BARREL);
+
+                if (hitBarrel.GetComponent<Rigidbody>() != null)
+                {
+                    GameObject.Instantiate(PlayerController.Instance.ExplosiveVfx, hitBarrel.transform.position, hitBarrel.transform.rotation);
+                    hitBarrel.GetComponent<Rigidbody>().AddForce(hitBarrel.transform.forward * 100, ForceMode.Impulse);
+                }
             }
             Destroy(gameObject);
         }
