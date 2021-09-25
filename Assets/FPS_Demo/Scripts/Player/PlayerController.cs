@@ -91,8 +91,8 @@ public class PlayerController : MonoBehaviour
     {
         var charForward = Vector3.ProjectOnPlane(transform.forward, Vector3.up);
 #if UNITY_EDITOR
-        m_movementDir = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0);
-        m_movementDir = charForward * Dpad.Instance.InputVector.y + transform.right * Dpad.Instance.InputVector.x;
+        m_movementDir = charForward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal");
+        //m_movementDir = charForward * Dpad.Instance.InputVector.y + transform.right * Dpad.Instance.InputVector.x;
         m_rotateDir = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0);
 #else
         if (Dpad.Instance.IsTouch)
