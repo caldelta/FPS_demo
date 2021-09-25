@@ -17,6 +17,5 @@ public class EnemyMovement  : MonoBehaviour
     {
         m_goal = PlayerController.Instance.transform;
         m_agent.destination = m_goal.position;
-
     }
 }
