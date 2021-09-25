@@ -4033,6 +4033,7 @@ GameObject:
   - component: {fileID: 483318}
   - component: {fileID: 9512176}
   - component: {fileID: 3800557942289858831}
+  - component: {fileID: 1133986794608672758}
   m_Layer: 0
   m_Name: SA_Zombie_Streetman
   m_TagString: Untagged
@@ -4146,6 +4147,18 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1133986794608672758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33145b96e1e5b60479484ee61a0dcb24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &164752
 GameObject:
   m_ObjectHideFlags: 0

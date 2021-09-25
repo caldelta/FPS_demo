@@ -9,13 +9,14 @@ public class EnemyMovement  : MonoBehaviour
 
     void Start()
     {
-        m_goal = PlayerController.Instance.transform;
+        
         m_agent = GetComponent<NavMeshAgent>();
-        m_agent.destination = m_goal.position;
     }
 
     private void Update()
     {
-        m_agent.velocity = transform.forward * Time.deltaTime;
+        m_goal = PlayerController.Instance.transform;
+        m_agent.destination = m_goal.position;
+
     }
 }

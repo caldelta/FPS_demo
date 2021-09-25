@@ -4087,6 +4087,7 @@ GameObject:
   - component: {fileID: 400066}
   - component: {fileID: 9570162}
   - component: {fileID: 4622044089302160628}
+  - component: {fileID: 8598009991871903983}
   m_Layer: 0
   m_Name: SA_Zombie_Hobo
   m_TagString: Untagged
@@ -4200,6 +4201,18 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8598009991871903983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33145b96e1e5b60479484ee61a0dcb24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &168396
 GameObject:
   m_ObjectHideFlags: 0
