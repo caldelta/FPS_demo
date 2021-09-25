@@ -168,15 +168,28 @@ public class PlayerController : MonoBehaviour
         var ray = Camera.main.ScreenPointToRay(PlayerConst.CrossHairPos);
         if (Physics.Raycast(ray, out RaycastHit hit, 10, EnvionmentConst.ENVIRONMENT_LAYER))
         {
-            if (hit.collider != null)
-                Debug.LogError(hit.collider.gameObject.name);
-            Instantiate(m_impactHole, hit.point, Quaternion.LookRotation(hit.normal));
+            Explode(hit);
+        }
+    }
 
-            var hitObject = hit.collider.gameObject;
-            if(hitObject.GetComponent<Rigidbody>() != null)
+    private void Explode(RaycastHit hit)
+    {
+        if (hit.collider != null)
+            Debug.LogError(hit.collider.gameObject.name);
+        Instantiate(m_impactHole, hit.point, Quaternion.LookRotation(hit.normal));
+
+        var hitObject = hit.collider.gameObject;
+        if (hitObject.GetComponent<Rigidbody>() != null)
+        {
+            Instantiate(m_explosiveVfx, hitObject.transform.position, hitObject.transform.rotation);
+            hitObject.GetComponent<Rigidbody>().AddForce(transform.forward * 100, ForceMode.Impulse);
+
+            Collider[] colliders = Physics.OverlapSphere(hitObject.transform.position, 5);
+            foreach (Collider col in colliders)
             {
-                Instantiate(m_explosiveVfx, hitObject.transform.position, hitObject.transform.rotation);
-                hitObject.GetComponent<Rigidbody>().AddForce(transform.forward * 100, ForceMode.Impulse);                
+                Rigidbody rb = col.GetComponent<Rigidbody>();
+                if (rb != null)
+                    rb.AddExplosionForce(100, hitObject.transform.position, 5, 3.0F, ForceMode.Impulse);
             }
         }
     }
