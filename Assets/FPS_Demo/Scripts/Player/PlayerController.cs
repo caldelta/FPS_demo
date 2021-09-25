@@ -168,6 +168,10 @@ public class PlayerController : MonoBehaviour
             if (hit.collider != null)
                 Debug.LogError(hit.collider.gameObject.name);
             Instantiate(m_impactHole, hit.point, Quaternion.LookRotation(hit.normal));
+
+            var hitObject = hit.collider.gameObject;
+            if(hitObject.GetComponent<Rigidbody>() != null)
+                hitObject.GetComponent<Rigidbody>().AddForce(transform.forward * 100, ForceMode.Impulse);
         }
     }
 
