@@ -229,11 +229,9 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
 
     private void OnCollisionStay(Collision collision)
     {
-        Debug.Log("hit player " + collision.collider.gameObject.name);
         if(collision.collider.CompareTag("Enemy"))
         {
             PlayerHealthController.Instance.Hurt(EnemyConst.ENEMY_DAMAGE);
         }        
-    }
-    
+    }    
 }
