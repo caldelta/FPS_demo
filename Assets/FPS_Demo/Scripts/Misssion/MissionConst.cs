@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class MissionConst
 {
-    public const int WATER_BOTTLES_MISSION_AMOUNT = 10;
+    public const int WATER_BOTTLES_MISSION_AMOUNT = 1;
 }

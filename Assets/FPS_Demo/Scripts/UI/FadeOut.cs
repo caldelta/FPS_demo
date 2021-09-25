@@ -17,9 +17,8 @@ public class FadeOut : MonoBehaviour
     public void Start()
     {
         Initialized = false;        
-        StartCoroutine(StartFade());
     }
-    IEnumerator StartFade()
+    public IEnumerator StartFade()
     {
         yield return new WaitForSeconds(2);
         Initialized = true;
