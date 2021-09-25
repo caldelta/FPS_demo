@@ -44,10 +44,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_enemyObject:
-  - {fileID: 136720, guid: 1e56599280e0eff43b580ef5c7e3dec2, type: 3}
-  - {fileID: 119274, guid: 6c48ed3b2c64908448212ef062aace3e, type: 3}
-  - {fileID: 160776, guid: 9172b776598ca90448277d43a7b00e08, type: 3}
-  - {fileID: 165266, guid: 1e2e55f2b72bd944baa992df728abe80, type: 3}
+  - {fileID: 160776, guid: acc06ed89dabc9b40ae715be01ba67ca, type: 3}
+  - {fileID: 119274, guid: 5b1cc619c3af18742a94b2c9f6e1c8fa, type: 3}
+  - {fileID: 165266, guid: 3149d42a2fbeb8a44877d64e3f007162, type: 3}
+  - {fileID: 136720, guid: ed19b68e0a277ec48a6be0144175f6c9, type: 3}
   m_spawnPoints:
   - {fileID: 0}
   - {fileID: 0}
