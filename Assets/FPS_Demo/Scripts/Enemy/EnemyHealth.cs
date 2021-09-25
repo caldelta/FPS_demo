@@ -8,7 +8,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void Damage()
     {
-        m_health -= 10;
+        m_health -= PlayerConst.ATTACK_DAMAGE;
     }
 
     private void Update()
