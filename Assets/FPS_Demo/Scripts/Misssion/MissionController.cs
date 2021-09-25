@@ -18,7 +18,10 @@ public class MissionController : SingletonMonoBehaviour<MissionController>
     public void Collect()
     {
         m_waterBottles++;
-
+        if(m_waterBottles == MissionConst.WATER_BOTTLES_MISSION_AMOUNT)
+        {
+            SceneLoader.Instance.LoadWin();
+        }
         m_txtWaterBottles.text = "X " + m_waterBottles;
     }
 }
