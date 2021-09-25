@@ -14,8 +14,6 @@ public class Grenade : MonoBehaviour
 
     private float m_lifeTime;
 
-
-
     // Start is called before the first frame update
     void Start()
     {

@@ -11,7 +11,8 @@ public class HitEnemy : HitObject
             Debug.LogError(RaycastHit.collider.gameObject.name);
         GameObject.Instantiate(BloodSplash, RaycastHit.point, Quaternion.LookRotation(RaycastHit.normal));
 
-        var hitObject = RaycastHit.collider.gameObject;
+        var hitObject = RaycastHit.collider.gameObject;        
+
         if (hitObject.GetComponent<Rigidbody>() != null)
         {
             hitObject.GetComponent<Rigidbody>().AddForce(-hitObject.transform.forward * 100, ForceMode.Impulse);            

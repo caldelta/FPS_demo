@@ -14,6 +14,8 @@ public class HitBarrel : HitObject
         GameObject.Instantiate(ImpactHole, RaycastHit.point, Quaternion.LookRotation(RaycastHit.normal));
 
         var hitObject = RaycastHit.collider.gameObject;
+        hitObject.GetComponent<ExplosiveBarrel>().SetHitType(HitType);
+
         if (hitObject.GetComponent<Rigidbody>() != null)
         {
             GameObject.Instantiate(ExplosiveVfx, hitObject.transform.position, hitObject.transform.rotation);
