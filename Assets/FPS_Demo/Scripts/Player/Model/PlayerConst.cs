@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerConst
 {
+    public const float HEALH_POINT = 10;
     public const int ATTACK_RANGE = 30;
     public const int ATTACK_DAMAGE = 1;
     public const int GRENADE_DAMAGE = 2;
