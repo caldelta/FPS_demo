@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Transform m_grenadePoint;
 
-    private RaycastHit[] bulletHits = new RaycastHit[1];
+    private RaycastHit[] bulletHits = new RaycastHit[5];
 
     private float m_rotationX;
     private float m_rotationY;
@@ -120,7 +120,11 @@ public class PlayerController : MonoBehaviour
     }
     private void UpdateAction()
     {
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.Space))
+#else
         if(FireButtonController.Instance.IsPressed && IsCurrentAnimationEnd && ObjectPooler.SharedInstance.IsAvailable(PoolConst.CASINGBULLET))
+#endif
         {
             SpawnCasingBullet();
             Fire();
@@ -159,10 +163,11 @@ public class PlayerController : MonoBehaviour
     private void Fire()
     {
         var ray = Camera.main.ScreenPointToRay(PlayerConst.CrossHairPos);
-        if (Physics.RaycastNonAlloc(ray, bulletHits) > 0)
+        if (Physics.Raycast(ray, out RaycastHit hit, 10, EnvionmentConst.ENVIRONMENT_LAYER))
         {
-            Debug.LogError(bulletHits[0].collider.gameObject.name);
-            Instantiate(m_impactHole, bulletHits[0].point, Quaternion.LookRotation(bulletHits[0].normal));
+            if (hit.collider != null)
+                Debug.LogError(hit.collider.gameObject.name);
+            Instantiate(m_impactHole, hit.point, Quaternion.LookRotation(hit.normal));
         }
     }
 
@@ -177,7 +182,7 @@ public class PlayerController : MonoBehaviour
         {
             return transform.localRotation;
         }
-            
+
         m_rotationX += rotateDir.x * PlayerConst.CAMERA_ROT_SENSITIVITY;
         m_rotationY += rotateDir.y * PlayerConst.CAMERA_ROT_SENSITIVITY;
         m_rotationX = ClampAngle(m_rotationX, PlayerConst.CAMERA_ROT_MIN_X, PlayerConst.CAMERA_ROT_MAX_X);
