@@ -16,5 +16,7 @@ public class HitEnemy : HitObject
         {
             hitObject.GetComponent<Rigidbody>().AddForce(-hitObject.transform.forward * 100, ForceMode.Impulse);            
         }
+
+        hitObject.GetComponent<EnemyHealth>().Damage();
     }
 }

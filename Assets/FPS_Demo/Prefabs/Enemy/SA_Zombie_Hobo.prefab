@@ -415,6 +415,7 @@ GameObject:
   - component: {fileID: 8598009991871903983}
   - component: {fileID: 497308819658306728}
   - component: {fileID: 8157310596305702763}
+  - component: {fileID: 5279402944738288588}
   m_Layer: 10
   m_Name: SA_Zombie_Hobo
   m_TagString: Untagged
@@ -520,6 +521,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5279402944738288588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8dc7e6fc1f999848af27bd8d9fa94ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &168396
 GameObject:
   m_ObjectHideFlags: 0
