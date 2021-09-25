@@ -5133,7 +5133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4752460790154753285}
-  - component: {fileID: 4752460790154753306}
+  - component: {fileID: 4752460790154753286}
   m_Layer: 0
   m_Name: EnemyController
   m_TagString: Untagged
@@ -5155,7 +5155,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4752460790154753306
+--- !u!114 &4752460790154753286
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5168,12 +5168,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_enemyObject:
-  - {fileID: 160776, guid: acc06ed89dabc9b40ae715be01ba67ca, type: 3}
   - {fileID: 119274, guid: 5b1cc619c3af18742a94b2c9f6e1c8fa, type: 3}
   - {fileID: 165266, guid: 3149d42a2fbeb8a44877d64e3f007162, type: 3}
   - {fileID: 136720, guid: ed19b68e0a277ec48a6be0144175f6c9, type: 3}
+  - {fileID: 160776, guid: acc06ed89dabc9b40ae715be01ba67ca, type: 3}
   m_spawnPoints:
-  - {fileID: 1535500761}
   - {fileID: 1723138027}
-  - {fileID: 1544881477}
+  - {fileID: 1535500761}
   - {fileID: 1415157451}
+  - {fileID: 1544881477}
