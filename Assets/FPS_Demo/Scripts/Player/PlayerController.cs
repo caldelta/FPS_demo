@@ -29,6 +29,8 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
     [SerializeField]
     private GameObject m_explosiveVfx;
 
+    [SerializeField]
+    private GameObject m_bloodSplash;
 
 
     private float m_rotationX;
@@ -167,7 +169,7 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
     {
         var ray = Camera.main.ScreenPointToRay(PlayerConst.CrossHairPos);
         HitObject hitObject;
-        if (Physics.Raycast(ray, out RaycastHit hitBarrel, 10, EnvironmentConst.ENVIRONMENT_LAYER))
+        if (Physics.Raycast(ray, out RaycastHit hitBarrel, PlayerConst.ATTACK_RANGE, EnvironmentConst.ENVIRONMENT_LAYER))
         {
             hitObject = new HitBarrel
             {
@@ -179,12 +181,13 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
             hitObject.Hit();            
         }
 
-        if (Physics.Raycast(ray, out RaycastHit hitEnemy, 10, EnvironmentConst.ENEMY_LAYER))
+        if (Physics.Raycast(ray, out RaycastHit hitEnemy, PlayerConst.ATTACK_RANGE, EnvironmentConst.ENEMY_LAYER))
         {
             hitObject = new HitEnemy
             {
                 HitType = HitType.ENEMY,
-                RaycastHit = hitEnemy
+                RaycastHit = hitEnemy,
+                BloodSplash = m_bloodSplash
             };
             hitObject.Hit();
         }

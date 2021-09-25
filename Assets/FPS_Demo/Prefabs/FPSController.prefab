@@ -6690,6 +6690,7 @@ MonoBehaviour:
   m_grenadePoint: {fileID: 4631234668473476}
   m_explosiveVfx: {fileID: 1126181125208960, guid: 2b27bbf95cc5d594e99e2dee49c1304d,
     type: 3}
+  m_bloodSplash: {fileID: 194062, guid: f5588e462acb98b4d95fda8c19336487, type: 3}
 --- !u!1 &1779037449516710
 GameObject:
   m_ObjectHideFlags: 0
