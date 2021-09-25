@@ -144,6 +144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 662852111369769216}
   - component: {fileID: 4430524781312769029}
+  - component: {fileID: 3215819899026843792}
   m_Layer: 5
   m_Name: MissionProgress
   m_TagString: Untagged
@@ -180,6 +181,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3145008990245203994}
   m_CullTransparentMesh: 1
+--- !u!114 &3215819899026843792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3145008990245203994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e451375129003469702cefe4ac8d00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_txtWaterBottles: {fileID: 7894291387514930642}
 --- !u!1 &3419468181950508944
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,9 +410,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanvasGroup: {fileID: 1866192861938680264}
-  VisibleDuration: 0
-  FadeInDuration: 0.5
-  FadeOutDuration: 2
 --- !u!1 &6935870760077368204
 GameObject:
   m_ObjectHideFlags: 0
