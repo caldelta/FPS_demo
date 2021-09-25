@@ -28,12 +28,16 @@ public class Grenade : MonoBehaviour
         if(m_lifeTime >= LIFE_TIME)
         {
             Instantiate(m_explosiveVfx, transform.position, transform.rotation);
-            Collider[] colliders = Physics.OverlapSphere(transform.position, 5);
+            Collider[] colliders = Physics.OverlapSphere(transform.position, 5, EnvironmentConst.DAMAGE_LAYER | EnvironmentConst.BARREL_LAYER);
             foreach (Collider col in colliders)
             {
-                var hitObject = col.GetComponent<EnemyHealth>();
-                if (hitObject != null)
-                    hitObject.Damage(PlayerConst.GRENADE_DAMAGE);
+                  var hitEnemy = col.GetComponent<EnemyHealth>();
+                if (hitEnemy != null)
+                    hitEnemy.Damage(PlayerConst.GRENADE_DAMAGE);
+
+                var hitBarrel = col.GetComponent<ExplosiveBarrel>();
+                if (hitBarrel != null)
+                    hitBarrel.SetHitType(HitType.BARREL);
             }
             Destroy(gameObject);
         }

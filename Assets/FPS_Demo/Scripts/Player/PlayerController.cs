@@ -25,9 +25,8 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
     private GameObject m_grenade;
     [SerializeField]
     private Transform m_grenadePoint;
-
-    [SerializeField]
-    private GameObject m_explosiveVfx;
+    
+    public GameObject ExplosiveVfx;
 
     [SerializeField]
     private GameObject m_bloodSplash;
@@ -173,14 +172,14 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
     {
         var ray = Camera.main.ScreenPointToRay(PlayerConst.CrossHairPos);
         HitObject hitObject;
-        if (Physics.Raycast(ray, out RaycastHit hitBarrel, PlayerConst.ATTACK_RANGE, EnvironmentConst.ENVIRONMENT_LAYER))
+        if (Physics.Raycast(ray, out RaycastHit hitBarrel, PlayerConst.ATTACK_RANGE, EnvironmentConst.BARREL_LAYER))
         {
             hitObject = new HitBarrel
             {
                 HitType = HitType.BARREL,
                 RaycastHit = hitBarrel,
                 ImpactHole = m_impactHole,
-                ExplosiveVfx = m_explosiveVfx
+                ExplosiveVfx = ExplosiveVfx
             };            
             hitObject.Hit();            
         }
