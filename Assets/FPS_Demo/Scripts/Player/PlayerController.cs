@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
     }
     private void UpdateAction()
     {
-        if(FireButtonController.Instance.IsPressed && IsCurrentAnimationEnd && ObjectPooler.SharedInstance.IsAvailable("CasingBullet"))
+        if(FireButtonController.Instance.IsPressed && IsCurrentAnimationEnd && ObjectPooler.SharedInstance.IsAvailable(PoolConst.CASINGBULLET))
         {
             SpawnCasingBullet();
             Fire();
@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
 
     private void SpawnCasingBullet()
     {
-        var go = ObjectPooler.SharedInstance.GetPooledObject("CasingBullet");
+        var go = ObjectPooler.SharedInstance.GetPooledObject(PoolConst.CASINGBULLET);
 
         go.SetActive(true);
         go.GetComponent<CasingBullet>().Setup();
