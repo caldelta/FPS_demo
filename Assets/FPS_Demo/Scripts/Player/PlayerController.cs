@@ -167,7 +167,7 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
     {
         var ray = Camera.main.ScreenPointToRay(PlayerConst.CrossHairPos);
         HitObject hitObject;
-        if (Physics.Raycast(ray, out RaycastHit hitBarrel, 10, EnvionmentConst.ENVIRONMENT_LAYER))
+        if (Physics.Raycast(ray, out RaycastHit hitBarrel, 10, EnvironmentConst.ENVIRONMENT_LAYER))
         {
             hitObject = new HitBarrel
             {
@@ -179,7 +179,7 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
             hitObject.Hit();            
         }
 
-        if (Physics.Raycast(ray, out RaycastHit hitEnemy, 10, EnvionmentConst.ENEMY_LAYER))
+        if (Physics.Raycast(ray, out RaycastHit hitEnemy, 10, EnvironmentConst.ENEMY_LAYER))
         {
             hitObject = new HitEnemy
             {
