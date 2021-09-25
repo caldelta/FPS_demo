@@ -166,31 +166,27 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
     private void Fire()
     {
         var ray = Camera.main.ScreenPointToRay(PlayerConst.CrossHairPos);
-        if (Physics.Raycast(ray, out RaycastHit hit, 10, EnvionmentConst.ENVIRONMENT_LAYER))
+        HitObject hitObject;
+        if (Physics.Raycast(ray, out RaycastHit hitBarrel, 10, EnvionmentConst.ENVIRONMENT_LAYER))
         {
-            Explode(hit);
-        }
-    }
-
-    private void Explode(RaycastHit hit)
-    {
-        if (hit.collider != null)
-            Debug.LogError(hit.collider.gameObject.name);
-        Instantiate(m_impactHole, hit.point, Quaternion.LookRotation(hit.normal));
-
-        var hitObject = hit.collider.gameObject;
-        if (hitObject.GetComponent<Rigidbody>() != null)
-        {
-            Instantiate(m_explosiveVfx, hitObject.transform.position, hitObject.transform.rotation);
-            hitObject.GetComponent<Rigidbody>().AddForce(transform.forward * 100, ForceMode.Impulse);
-
-            Collider[] colliders = Physics.OverlapSphere(hitObject.transform.position, 5);
-            foreach (Collider col in colliders)
+            hitObject = new HitBarrel
             {
-                Rigidbody rb = col.GetComponent<Rigidbody>();
-                if (rb != null)
-                    rb.AddExplosionForce(100, hitObject.transform.position, 5, 3.0F, ForceMode.Impulse);
-            }
+                HitType = HitType.BARREL,
+                RaycastHit = hitBarrel,
+                ImpactHole = m_impactHole,
+                ExplosiveVfx = m_explosiveVfx
+            };            
+            hitObject.Hit();            
+        }
+
+        if (Physics.Raycast(ray, out RaycastHit hitEnemy, 10, EnvionmentConst.ENEMY_LAYER))
+        {
+            hitObject = new HitEnemy
+            {
+                HitType = HitType.ENEMY,
+                RaycastHit = hitEnemy
+            };
+            hitObject.Hit();
         }
     }
 
