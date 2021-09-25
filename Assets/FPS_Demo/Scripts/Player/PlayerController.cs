@@ -226,6 +226,7 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
             angle -= 360f;
         return Mathf.Clamp(angle, min, max);
     }
+
     private void OnCollisionStay(Collision collision)
     {
         Debug.Log("hit player " + collision.collider.gameObject.name);
