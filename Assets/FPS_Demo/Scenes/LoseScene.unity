@@ -685,7 +685,6 @@ GameObject:
   - component: {fileID: 1814912636}
   - component: {fileID: 1814912635}
   - component: {fileID: 1814912634}
-  - component: {fileID: 1814912633}
   m_Layer: 5
   m_Name: RestartButton
   m_TagString: Untagged
@@ -693,19 +692,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1814912633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1814912632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9d73053268a2ae48bb9e7d4bf6419fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SceneName: MainScene
 --- !u!114 &1814912634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -750,9 +736,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1814912633}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: LoadTargetScene
+      - m_Target: {fileID: 1847275008}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: LoadMain
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -908,6 +894,7 @@ GameObject:
   - component: {fileID: 1847275006}
   - component: {fileID: 1847275005}
   - component: {fileID: 1847275004}
+  - component: {fileID: 1847275008}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -999,6 +986,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1847275008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847275003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81a473b5ef11e1b4f94a8e7090f45614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1914197082
 GameObject:
   m_ObjectHideFlags: 0
@@ -1011,7 +1010,6 @@ GameObject:
   - component: {fileID: 1914197086}
   - component: {fileID: 1914197085}
   - component: {fileID: 1914197084}
-  - component: {fileID: 1914197083}
   m_Layer: 5
   m_Name: MenuButton
   m_TagString: Untagged
@@ -1019,19 +1017,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1914197083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1914197082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9d73053268a2ae48bb9e7d4bf6419fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SceneName: IntroMenu
 --- !u!114 &1914197084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1076,9 +1061,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1914197083}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: LoadTargetScene
+      - m_Target: {fileID: 1847275008}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: LoadIntro
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
