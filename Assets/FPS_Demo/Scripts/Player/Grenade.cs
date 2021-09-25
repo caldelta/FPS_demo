@@ -5,11 +5,16 @@ using UnityEngine;
 public class Grenade : MonoBehaviour
 {
     [SerializeField]
+    private GameObject m_explosiveVfx;
+
+    [SerializeField]
     private Rigidbody m_rigidBody;
 
-    private const int LIFE_TIME = 3000;
+    private const int LIFE_TIME = 2000;
 
     private float m_lifeTime;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +29,7 @@ public class Grenade : MonoBehaviour
 
         if(m_lifeTime >= LIFE_TIME)
         {
+            Instantiate(m_explosiveVfx, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }
