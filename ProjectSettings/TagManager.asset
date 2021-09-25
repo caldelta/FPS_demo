@@ -8,6 +8,7 @@ TagManager:
   - Metal
   - ExplosiveBarrel
   - Target
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -19,11 +20,11 @@ TagManager:
   - 
   - PostProcessing
   - Environment
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Enemy
+  - Grenade
+  - Player
+  - Damage
+  - Barrel
   - 
   - 
   - 

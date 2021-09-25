@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnvionmentConst
+public class MissionConst
 {
-    public const int ENVIRONMENT_LAYER = 1 << 9;
+    public const int WATER_BOTTLES_MISSION_AMOUNT = 10;
 }
