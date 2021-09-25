@@ -2,27 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class GrenadeButtonController : BaseButtonController
+public class GrenadeButtonController : SingletonMonoBehaviour<GrenadeButtonController>
 {
-    private static GrenadeButtonController m_instance;
+    [SerializeField]
+    private Button m_btn;
 
-    public static GrenadeButtonController Instance
+    public bool IsPressed { get; set; }
+    private void Start()
     {
-        get
-        {
-            if (m_instance == null)
-            {
-                m_instance = (GrenadeButtonController)FindObjectOfType(typeof(GrenadeButtonController));
+        m_btn.onClick.AddListener(Grenade);
+    }
 
-                if (m_instance == null)
-                {
-                    GameObject singleton = new GameObject();
-                    m_instance = singleton.AddComponent<GrenadeButtonController>();
-                }
-            }
-
-            return m_instance;
-        }
+    private void Grenade()
+    {
+        IsPressed = true;
     }
 }

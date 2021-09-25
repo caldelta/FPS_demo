@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4631234668473476}
   m_Layer: 8
-  m_Name: Grenade_Spawn_Point
+  m_Name: GrenadePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6686,6 +6686,8 @@ MonoBehaviour:
   m_casingPoint: {fileID: 2781593511478258830}
   m_impactHole: {fileID: 1133313454119596, guid: 0ae4da2dffb2d4444a30735cdb694a79,
     type: 3}
+  m_grenade: {fileID: 1081414821777434, guid: 6a1f6e3144dda1e448f40299f931d9c1, type: 3}
+  m_grenadePoint: {fileID: 4631234668473476}
 --- !u!1 &1779037449516710
 GameObject:
   m_ObjectHideFlags: 0

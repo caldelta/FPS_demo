@@ -20,6 +20,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private GameObject m_impactHole;
 
+    [SerializeField]
+    private GameObject m_grenade;
+    [SerializeField]
+    private Transform m_grenadePoint;
+
     private RaycastHit[] bulletHits = new RaycastHit[1];
 
     // Start is called before the first frame update
@@ -43,8 +48,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        UpdateAction();
         UpdateAnimation();
+        UpdateAction();
     }
 
     private void UpdateMovement()
@@ -67,6 +72,12 @@ public class PlayerController : MonoBehaviour
         {
             SpawnCasingBullet();
             Fire();
+        }
+
+        if (GrenadeButtonController.Instance.IsPressed)
+        {
+            GrenadeButtonController.Instance.IsPressed = false;
+            Grenade();
         }
     }
 
@@ -101,5 +112,10 @@ public class PlayerController : MonoBehaviour
             Debug.LogError(bulletHits[0].collider.gameObject.name);
             Instantiate(m_impactHole, bulletHits[0].point, Quaternion.LookRotation(bulletHits[0].normal));
         }
+    }
+
+    public void Grenade()
+    {
+        Instantiate(m_grenade, m_grenadePoint);
     }
 }
