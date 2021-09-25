@@ -135,7 +135,11 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
             Fire();
         }
 
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.G))
+#else
         if (GrenadeButtonController.Instance.IsPressed)
+#endif
         {
             GrenadeButtonController.Instance.IsPressed = false;
             Grenade();
