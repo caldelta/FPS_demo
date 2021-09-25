@@ -26,7 +26,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Transform m_grenadePoint;
 
-    private RaycastHit[] bulletHits = new RaycastHit[5];
+    [SerializeField]
+    private GameObject m_explosiveVfx;
+
+
 
     private float m_rotationX;
     private float m_rotationY;
@@ -171,7 +174,10 @@ public class PlayerController : MonoBehaviour
 
             var hitObject = hit.collider.gameObject;
             if(hitObject.GetComponent<Rigidbody>() != null)
-                hitObject.GetComponent<Rigidbody>().AddForce(transform.forward * 100, ForceMode.Impulse);
+            {
+                Instantiate(m_explosiveVfx, hitObject.transform.position, hitObject.transform.rotation);
+                hitObject.GetComponent<Rigidbody>().AddForce(transform.forward * 100, ForceMode.Impulse);                
+            }
         }
     }
 
