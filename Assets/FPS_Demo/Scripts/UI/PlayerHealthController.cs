@@ -15,6 +15,10 @@ public class PlayerHealthController : SingletonMonoBehaviour<PlayerHealthControl
             SceneLoader.Instance.LoadLose();
         }
 
-        m_imgHealth.fillAmount -= damage / PlayerConst.HEALH_POINT;
+        float dmgAmount = m_imgHealth.fillAmount;
+
+        dmgAmount-= damage / PlayerConst.HEALH_POINT;
+
+        m_imgHealth.fillAmount = Mathf.Lerp(m_imgHealth.fillAmount, dmgAmount, Time.deltaTime * 2);
     }
 }

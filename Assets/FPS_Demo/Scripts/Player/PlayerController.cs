@@ -232,7 +232,7 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
         Debug.Log("hit player " + collision.collider.gameObject.name);
         if(collision.collider.CompareTag("Enemy"))
         {
-            PlayerHealthController.Instance.Hurt(1);
+            PlayerHealthController.Instance.Hurt(EnemyConst.ENEMY_DAMAGE);
         }        
     }
     
