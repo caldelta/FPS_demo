@@ -6,9 +6,9 @@ public class EnemyHealth : MonoBehaviour
 {
     private float m_health = EnemyConst.ENEMY_HEALTH;
 
-    public void Damage()
+    public void Damage(int damage)
     {
-        m_health -= PlayerConst.ATTACK_DAMAGE;
+        m_health -= damage;
     }
 
     private void Update()
