@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -27,9 +28,22 @@ public class PlayerController : MonoBehaviour
 
     private RaycastHit[] bulletHits = new RaycastHit[1];
 
+    private float m_rotationX;
+    private float m_rotationY;
+
+    private Quaternion m_originalRot;
+
+    private Touch m_touch;
+    private bool m_isTouch = false;
+
+    private Vector3 m_movementDir;
+    private Vector3 m_rotateDir;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        m_originalRot = transform.localRotation;
     }
 
     private bool IsCurrentAnimationEnd
@@ -48,23 +62,61 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        UpdateTouch();
         UpdateAnimation();
         UpdateAction();
+    }
+    private void UpdateTouch()
+    {
+        if (Input.touchCount == 1)
+        {
+            m_touch = Input.touches[0];
+            switch (m_touch.phase)
+            {
+                case TouchPhase.Began:
+                    m_isTouch = true;
+                    break;
+                case TouchPhase.Stationary:
+                    break;
+                case TouchPhase.Moved:
+                    break;
+                case TouchPhase.Ended:
+                    m_isTouch = false;
+                    break;
+            }
+        }
     }
 
     private void UpdateMovement()
     {
+        var charForward = Vector3.ProjectOnPlane(transform.forward, Vector3.up);
 #if UNITY_EDITOR
-        var dir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        m_movementDir = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0);
+        m_movementDir = charForward * Dpad.Instance.InputVector.y + transform.right * Dpad.Instance.InputVector.x;
+        m_rotateDir = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0);
 #else
-        var dir = Dpad.Instance.InputVector.y * transform.forward;
+        if (Dpad.Instance.IsTouch)
+        {
+            m_movementDir = charForward * Dpad.Instance.InputVector.y + transform.right * Dpad.Instance.InputVector.x;            
+        }
+        else
+        {
+            m_movementDir = Vector3.zero;        
+        }
+        if(m_isTouch)
+        {
+            m_rotateDir = new Vector3(m_touch.deltaPosition.x, m_touch.deltaPosition.y, 0);
+        }
+        else
+        {
+            m_rotateDir = Vector3.zero;
+        }
 #endif
-        m_speed = dir.magnitude;
+        m_speed = m_movementDir.magnitude;
 
-        m_rigidBody.MovePosition(m_rigidBody.position + dir * Time.deltaTime * PlayerConst.MOVEMENT_SPEED);
+        m_rigidBody.MovePosition(m_rigidBody.position + m_movementDir * Time.deltaTime * PlayerConst.MOVEMENT_SPEED);
 
-        var rot = Quaternion.Euler(0, Dpad.Instance.InputVector.x * Time.deltaTime * PlayerConst.ROTATION_SPEED, 0);
-        m_rigidBody.MoveRotation(m_rigidBody.rotation * rot);
+        m_rigidBody.MoveRotation(GetCameraRotation(m_rotateDir));
     }
     private void UpdateAction()
     {
@@ -117,5 +169,31 @@ public class PlayerController : MonoBehaviour
     public void Grenade()
     {
         Instantiate(m_grenade, m_grenadePoint);
+    }
+
+    private Quaternion GetCameraRotation(Vector3 rotateDir)
+    {
+        if (Dpad.Instance.IsTouch)
+        {
+            return transform.localRotation;
+        }
+            
+        m_rotationX += rotateDir.x * PlayerConst.CAMERA_ROT_SENSITIVITY;
+        m_rotationY += rotateDir.y * PlayerConst.CAMERA_ROT_SENSITIVITY;
+        m_rotationX = ClampAngle(m_rotationX, PlayerConst.CAMERA_ROT_MIN_X, PlayerConst.CAMERA_ROT_MAX_X);
+        m_rotationY = ClampAngle(m_rotationY, PlayerConst.CAMERA_ROT_MIN_Y, PlayerConst.CAMERA_ROT_MAX_Y);
+        Quaternion xQuaternion = Quaternion.AngleAxis(m_rotationX, Vector3.up);
+        Quaternion yQuaternion = Quaternion.AngleAxis(m_rotationY, -Vector3.right);
+
+        return m_originalRot * xQuaternion * yQuaternion;
+    }
+
+    public static float ClampAngle(float angle, float min, float max)
+    {
+        if (angle < -360f)
+            angle += 360F;
+        if (angle > 360f)
+            angle -= 360f;
+        return Mathf.Clamp(angle, min, max);
     }
 }

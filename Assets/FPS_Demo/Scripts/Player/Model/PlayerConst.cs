@@ -12,4 +12,12 @@ public class PlayerConst
     public static readonly int GrenadeStateHash = Animator.StringToHash("grenade");
 
     public static readonly Vector3 CrossHairPos = new Vector3(Screen.width >> 1, Screen.height >> 1);
+
+    public const float CAMERA_ROT_MIN_X = -360F;
+    public const float CAMERA_ROT_MAX_X = 360F;
+    public const float CAMERA_ROT_MIN_Y = -40F;
+    public const float CAMERA_ROT_MAX_Y = 40F;
+
+    public const float CAMERA_ROT_SENSITIVITY = 1;
+
 }

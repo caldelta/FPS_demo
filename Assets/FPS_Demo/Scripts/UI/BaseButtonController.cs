@@ -8,13 +8,11 @@ public abstract class BaseButtonController : MonoBehaviour, IPointerUpHandler, I
     public bool IsPressed { get; set; }
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log(gameObject.name + " " + "down");
         IsPressed = true;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log(gameObject.name + " " + "up");
         IsPressed = false;
     }
 }
