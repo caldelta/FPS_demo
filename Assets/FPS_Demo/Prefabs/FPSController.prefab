@@ -6516,9 +6516,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4399724542279590}
   - component: {fileID: 54436517532814138}
-  - component: {fileID: 136200420258760052}
   - component: {fileID: 6106490564748958000}
   - component: {fileID: 5785508960112958562}
+  - component: {fileID: 4193646080416444874}
   m_Layer: 13
   m_Name: FPSController
   m_TagString: Player
@@ -6557,20 +6557,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 84
   m_CollisionDetection: 1
---- !u!136 &136200420258760052
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1778574915019774}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.3
-  m_Height: 1.8
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6106490564748958000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6695,6 +6681,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &4193646080416444874
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778574915019774}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.65, y: 2, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1779037449516710
 GameObject:
   m_ObjectHideFlags: 0

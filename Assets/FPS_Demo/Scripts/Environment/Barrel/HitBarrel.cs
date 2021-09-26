@@ -9,8 +9,6 @@ public class HitBarrel : HitObject
 
     public override void Hit()
     {
-        if (RaycastHit.collider != null)
-            Debug.LogError(RaycastHit.collider.gameObject.name);
         GameObject.Instantiate(ImpactHole, RaycastHit.point, Quaternion.LookRotation(RaycastHit.normal));
 
         var hitObject = RaycastHit.collider.gameObject;

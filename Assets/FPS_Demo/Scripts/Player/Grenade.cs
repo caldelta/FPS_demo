@@ -59,7 +59,6 @@ public class Grenade : MonoBehaviour
                     }
                 }
             }
-            Debug.Log(m_audioSource.clip.length);
             Destroy(gameObject, 0.4f);
         }
     }

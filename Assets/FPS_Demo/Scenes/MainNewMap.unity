@@ -835,7 +835,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0c58744c3b6fdd844b8348066c3f703e, type: 3}
   - {fileID: 8300000, guid: a640cc6972f037f4ca8f590635bb4f2a, type: 3}
   m_audioSrc: {fileID: 622371330}
-  m_audioFxSrc: {fileID: 0}
 --- !u!4 &622371329
 Transform:
   m_ObjectHideFlags: 0
@@ -4981,7 +4980,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4752460790154753285
 Transform:
   m_ObjectHideFlags: 0

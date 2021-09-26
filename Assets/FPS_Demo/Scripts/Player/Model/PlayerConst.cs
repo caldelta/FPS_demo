@@ -9,6 +9,7 @@ public class PlayerConst
     public const int ATTACK_DAMAGE = 1;
     public const int GRENADE_DAMAGE = 2;
 
+    public const float FIRE_RATE = 0.1f;
     public const float MOVEMENT_SPEED = 10;
     public const float ROTATION_SPEED = 50;
 

@@ -25,7 +25,7 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
     private GameObject m_grenade;
     [SerializeField]
     private Transform m_grenadePoint;
-    
+
     public GameObject ExplosiveVfx;
 
     [SerializeField]
@@ -59,7 +59,7 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
     void Start()
     {
         m_originalRot = transform.localRotation;
-        timeshot = Time.realtimeSinceStartup;
+        m_timeShot = Time.realtimeSinceStartup;
     }
 
     private bool IsCurrentAnimationEnd
@@ -109,7 +109,6 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
         var charForward = Vector3.ProjectOnPlane(transform.forward, Vector3.up);
 #if UNITY_EDITOR
         m_movementDir = charForward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal");
-        //m_movementDir = charForward * Dpad.Instance.InputVector.y + transform.right * Dpad.Instance.InputVector.x;
         m_rotateDir = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0);
 #else
         if (Dpad.Instance.IsTouch)
@@ -136,32 +135,32 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
         m_rigidBody.MoveRotation(GetCameraRotation(m_rotateDir));
     }
 
-    private float soundShotDuration = 0.25f;
-    private float timeshot;
+    private float m_timeShot;
     private void UpdateAction()
     {
 
-        //#if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.Space))
-            //#else
-            //if (FireButtonController.Instance.IsPressed && IsCurrentAnimationEnd && ObjectPooler.SharedInstance.IsAvailable(PoolConst.CASINGBULLET))
-//#endif
-        {
-            if(Time.realtimeSinceStartup - timeshot >= soundShotDuration)
+#if UNITY_EDITOR
+        //if (Input.GetKeyDown(KeyCode.Space))
+            if (FireButtonController.Instance.IsPressed && IsCurrentAnimationEnd && ObjectPooler.SharedInstance.IsAvailable(PoolConst.CASINGBULLET))
+#else
+            if (FireButtonController.Instance.IsPressed && IsCurrentAnimationEnd && ObjectPooler.SharedInstance.IsAvailable(PoolConst.CASINGBULLET))
+#endif
             {
-                var dur = Time.realtimeSinceStartup - timeshot;
+            if (Time.realtimeSinceStartup - m_timeShot >= PlayerConst.FIRE_RATE)
+            {
+                Debug.Log("Fire");
                 m_audioSource.PlayOneShot(m_shotFx);
-                timeshot += soundShotDuration;
+                m_timeShot = Time.realtimeSinceStartup + PlayerConst.FIRE_RATE;
                 SpawnCasingBullet();
                 Fire();
             }
         }
 
-//#if UNITY_EDITOR
-//        if (Input.GetKeyDown(KeyCode.G))
-//#else
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.G))
+#else
         if (GrenadeButtonController.Instance.IsPressed)
-//#endif
+#endif
         {
             GrenadeButtonController.Instance.IsPressed = false;
             Grenade();
@@ -182,7 +181,7 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
 
     private void UpdateSound()
     {
-        if(m_speed != 0)
+        if (m_speed != 0)
         {
             SoundManager.Instance.Play(SoundConst.Run);
         }
@@ -216,8 +215,8 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
                 RaycastHit = hitBarrel,
                 ImpactHole = m_impactHole,
                 ExplosiveVfx = ExplosiveVfx
-            };            
-            hitObject.Hit();            
+            };
+            hitObject.Hit();
         }
 
         if (Physics.Raycast(ray, out RaycastHit hitEnemy, PlayerConst.ATTACK_RANGE, EnvironmentConst.ENEMY_LAYER))
@@ -267,9 +266,9 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
 
     private void OnCollisionStay(Collision collision)
     {
-        if(collision.collider.CompareTag("Enemy"))
+        if (collision.collider.CompareTag("Enemy"))
         {
             PlayerHealthController.Instance.Hurt(EnemyConst.ENEMY_DAMAGE);
-        }        
-    }    
+        }
+    }
 }

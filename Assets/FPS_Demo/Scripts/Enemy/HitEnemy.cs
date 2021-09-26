@@ -7,10 +7,6 @@ public class HitEnemy : HitObject
     public GameObject BloodSplash;
     public override void Hit()
     {
-#if DEBUG
-        if (RaycastHit.collider != null)
-            Debug.LogError(RaycastHit.collider.gameObject.name);
-#endif
         GameObject.Instantiate(BloodSplash, RaycastHit.point, Quaternion.LookRotation(RaycastHit.normal));
 
         var hitObject = RaycastHit.collider.gameObject;        
