@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/FPS_Demo/Scenes/IntroMenu.unity
+    guid: 01927ce38ba33c74d80fad3ba6d9c124
+  - enabled: 1
+    path: Assets/FPS_Demo/Scenes/LoseScene.unity
+    guid: e940293e38f712749b96f2f9889e52ce
+  - enabled: 1
+    path: Assets/FPS_Demo/Scenes/Main.unity
+    guid: 2f6e36c257f228b4d933d766cd5d676c
+  - enabled: 1
+    path: Assets/FPS_Demo/Scenes/WinScene.unity
+    guid: cb9037e597f1d864bb6cd027355b6609
   m_configObjects: {}
