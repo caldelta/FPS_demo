@@ -64,6 +64,7 @@ public class MissionController : SingletonMonoBehaviour<MissionController>
     {
         if (IsGameEnding)
         {
+            m_blackScreen.SetActive(true);
             m_fadeTime += Time.deltaTime * 0.01f;
             m_blackScreen.GetComponent<CanvasGroup>().alpha += m_fadeTime;
 

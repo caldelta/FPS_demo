@@ -148,7 +148,6 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
             {
             if (Time.realtimeSinceStartup - m_timeShot >= PlayerConst.FIRE_RATE)
             {
-                Debug.Log("Fire");
                 m_audioSource.PlayOneShot(m_shotFx);
                 m_timeShot = Time.realtimeSinceStartup + PlayerConst.FIRE_RATE;
                 SpawnCasingBullet();
@@ -240,8 +239,8 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
 
     private Quaternion GetCameraRotation(Vector3 rotateDir)
     {
-        if (EventSystem.current.IsPointerOverGameObject())
-        {
+        if (Dpad.Instance.IsTouch)
+        {            
             return transform.localRotation;
         }
 

@@ -55,7 +55,6 @@ public class Grenade : MonoBehaviour
                     if (hitBarrel.GetComponent<Rigidbody>() != null)
                     {
                         GameObject.Instantiate(PlayerController.Instance.ExplosiveVfx, hitBarrel.transform.position, hitBarrel.transform.rotation);
-                        hitBarrel.GetComponent<Rigidbody>().AddForce(hitBarrel.transform.forward * 100, ForceMode.Impulse);
                     }
                 }
             }
