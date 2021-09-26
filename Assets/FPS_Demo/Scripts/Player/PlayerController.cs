@@ -240,7 +240,7 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
 
     private Quaternion GetCameraRotation(Vector3 rotateDir)
     {
-        if (Dpad.Instance.IsTouch)
+        if (EventSystem.current.IsPointerOverGameObject())
         {
             return transform.localRotation;
         }
