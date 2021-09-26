@@ -6,7 +6,7 @@ public class CasingBullet : MonoBehaviour
 {
     private float m_lifeTime;
 
-    private const float LIFETIME = 200f;
+    private const float LIFETIME = 1000;
 
     [SerializeField]
     private Rigidbody m_rigidBody;
@@ -21,7 +21,7 @@ public class CasingBullet : MonoBehaviour
     public void Setup()
     {
         m_lifeTime = 0;
-        m_rigidBody.AddForce(Random.onUnitSphere, ForceMode.Impulse);
+        m_rigidBody.AddForce(Random.onUnitSphere , ForceMode.Impulse);
         m_rigidBody.AddTorque(Random.onUnitSphere, ForceMode.Impulse);
     }
 

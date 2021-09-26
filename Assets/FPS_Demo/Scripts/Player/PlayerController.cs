@@ -43,11 +43,23 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
     private Vector3 m_movementDir;
     private Vector3 m_rotateDir;
 
+    [SerializeField]
+    private AudioSource m_audioSource;
+
+    [SerializeField]
+    private AudioClip m_runFx;
+
+    [SerializeField]
+    private AudioClip m_shotFx;
+
+    [SerializeField]
+    private AudioClip m_greandeFx;
 
     // Start is called before the first frame update
     void Start()
     {
         m_originalRot = transform.localRotation;
+        timeshot = Time.realtimeSinceStartup;
     }
 
     private bool IsCurrentAnimationEnd
@@ -69,6 +81,7 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
         UpdateTouch();
         UpdateAnimation();
         UpdateAction();
+        UpdateSound();
     }
     private void UpdateTouch()
     {
@@ -122,23 +135,33 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
 
         m_rigidBody.MoveRotation(GetCameraRotation(m_rotateDir));
     }
+
+    private float soundShotDuration = 0.25f;
+    private float timeshot;
     private void UpdateAction()
     {
-#if UNITY_EDITOR
+
+        //#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Space))
-#else
-        if(FireButtonController.Instance.IsPressed && IsCurrentAnimationEnd && ObjectPooler.SharedInstance.IsAvailable(PoolConst.CASINGBULLET))
-#endif
+            //#else
+            //if (FireButtonController.Instance.IsPressed && IsCurrentAnimationEnd && ObjectPooler.SharedInstance.IsAvailable(PoolConst.CASINGBULLET))
+//#endif
         {
-            SpawnCasingBullet();
-            Fire();
+            if(Time.realtimeSinceStartup - timeshot >= soundShotDuration)
+            {
+                var dur = Time.realtimeSinceStartup - timeshot;
+                m_audioSource.PlayOneShot(m_shotFx);
+                timeshot += soundShotDuration;
+                SpawnCasingBullet();
+                Fire();
+            }
         }
 
-#if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.G))
-#else
+//#if UNITY_EDITOR
+//        if (Input.GetKeyDown(KeyCode.G))
+//#else
         if (GrenadeButtonController.Instance.IsPressed)
-#endif
+//#endif
         {
             GrenadeButtonController.Instance.IsPressed = false;
             Grenade();
@@ -157,6 +180,18 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
         }
     }
 
+    private void UpdateSound()
+    {
+        if(m_speed != 0)
+        {
+            SoundManager.Instance.Play(SoundConst.Run);
+        }
+        else
+        {
+            SoundManager.Instance.Stop();
+        }
+    }
+
     private void SpawnCasingBullet()
     {
         var go = ObjectPooler.SharedInstance.GetPooledObject(PoolConst.CASINGBULLET);
@@ -170,9 +205,10 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
 
     private void Fire()
     {
+
         var ray = Camera.main.ScreenPointToRay(PlayerConst.CrossHairPos);
         HitObject hitObject;
-        if (Physics.Raycast(ray, out RaycastHit hitBarrel, PlayerConst.ATTACK_RANGE, EnvironmentConst.BARREL_LAYER))
+        if (Physics.Raycast(ray, out RaycastHit hitBarrel, PlayerConst.ATTACK_RANGE, EnvironmentConst.BARREL_LAYER | EnvironmentConst.ENVIRONMENT_LAYER))
         {
             hitObject = new HitBarrel
             {
@@ -198,6 +234,8 @@ public class PlayerController : SingletonMonoBehaviour<PlayerController>
 
     public void Grenade()
     {
+        m_audioSource.PlayOneShot(m_greandeFx);
+
         Instantiate(m_grenade, m_grenadePoint);
     }
 

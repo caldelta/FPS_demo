@@ -14,19 +14,28 @@ public class Grenade : MonoBehaviour
 
     private float m_lifeTime;
 
+    [SerializeField]
+    private AudioSource m_audioSource;
+
+    [SerializeField]
+    private AudioClip m_audioClip;
+
     // Start is called before the first frame update
     void Start()
     {
         m_lifeTime = 0;
         m_rigidBody.AddForce(transform.forward * 10, ForceMode.Impulse);
     }
-
+    
     private void Update()
     {
         m_lifeTime += Time.realtimeSinceStartup;
 
-        if(m_lifeTime >= LIFE_TIME)
-        {
+        if(m_lifeTime > LIFE_TIME)
+        {          
+            //m_audioSource.PlayOneShot(m_audioClip);
+            m_audioSource.Play();
+            m_lifeTime = -LIFE_TIME;
             Instantiate(m_explosiveVfx, transform.position, transform.rotation);
             Collider[] colliders = Physics.OverlapSphere(transform.position, 5, EnvironmentConst.DAMAGE_LAYER | EnvironmentConst.BARREL_LAYER | EnvironmentConst.ENEMY_LAYER);
             foreach (Collider col in colliders)
@@ -50,7 +59,8 @@ public class Grenade : MonoBehaviour
                     }
                 }
             }
-            Destroy(gameObject);
+            Debug.Log(m_audioSource.clip.length);
+            Destroy(gameObject, 0.4f);
         }
     }
 }
