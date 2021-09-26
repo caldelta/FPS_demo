@@ -33,7 +33,6 @@ public class Grenade : MonoBehaviour
 
         if(m_lifeTime > LIFE_TIME)
         {          
-            //m_audioSource.PlayOneShot(m_audioClip);
             m_audioSource.Play();
             m_lifeTime = -LIFE_TIME;
             Instantiate(m_explosiveVfx, transform.position, transform.rotation);
