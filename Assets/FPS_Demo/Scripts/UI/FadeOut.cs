@@ -18,11 +18,10 @@ public class FadeOut : MonoBehaviour
     {
         Initialized = false;        
     }
-    public IEnumerator StartFade()
+    public void StartFade()
     {
-        yield return new WaitForSeconds(2);
-        Initialized = true;
         m_InitTime = Time.time;
+        Initialized = true;
     }
 
     void Update()

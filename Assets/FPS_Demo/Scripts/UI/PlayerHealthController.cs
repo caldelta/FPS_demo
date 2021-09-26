@@ -11,7 +11,7 @@ public class PlayerHealthController : SingletonMonoBehaviour<PlayerHealthControl
     public void Hurt(float damage)
     {
         if (m_imgHealth.fillAmount <= 0)
-        {
+        {            
             SceneLoader.Instance.LoadLose();
         }
 

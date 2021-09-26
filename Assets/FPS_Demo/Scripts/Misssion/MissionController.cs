@@ -18,11 +18,21 @@ public class MissionController : SingletonMonoBehaviour<MissionController>
     [SerializeField]
     private TextMeshProUGUI m_txtWaterBottles;
 
+    private bool IsGameEnding;
+
+    private float m_fadeTime;
+
     private void Start()
     {
         m_waterBottles = 0;
         m_txtWaterBottles.text = "X " + m_waterBottles;
-        StartCoroutine(m_missionStart.GetComponent<FadeOut>().StartFade());
+        StartCoroutine(StartGame());
+    }
+
+    private IEnumerator StartGame()
+    {
+        yield return new WaitForSeconds(2);
+        m_missionStart.GetComponent<FadeOut>().StartFade();
     }
 
     public void Collect()
@@ -37,8 +47,25 @@ public class MissionController : SingletonMonoBehaviour<MissionController>
 
     private IEnumerator Win()
     {
-        yield return m_missionEnd.GetComponent<FadeOut>().StartFade();        
-        yield return m_blackScreen.GetComponent<FadeOut>().StartFade();
-        SceneLoader.Instance.LoadWin();
+        m_missionEnd.GetComponent<FadeOut>().StartFade();
+        yield return new WaitForSeconds(2);
+        IsGameEnding = true;
+    }
+
+    void Update()
+    {
+        if (IsGameEnding)
+        {
+            m_fadeTime += Time.deltaTime * 0.01f;
+            m_blackScreen.GetComponent<CanvasGroup>().alpha += m_fadeTime;
+
+            //AudioUtility.SetMasterVolume(1 - timeRatio);
+
+            if (m_blackScreen.GetComponent<CanvasGroup>().alpha == 1)
+            {
+                SceneLoader.Instance.LoadWin();
+                IsGameEnding = false;
+            }
+        }
     }
 }
