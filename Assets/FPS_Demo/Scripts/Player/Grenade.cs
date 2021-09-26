@@ -10,7 +10,7 @@ public class Grenade : MonoBehaviour
     [SerializeField]
     private Rigidbody m_rigidBody;
 
-    private const int LIFE_TIME = 2000;
+    private const int LIFE_TIME = 1;
 
     private float m_lifeTime;
 
@@ -29,7 +29,7 @@ public class Grenade : MonoBehaviour
     
     private void Update()
     {
-        m_lifeTime += Time.realtimeSinceStartup;
+        m_lifeTime += Time.deltaTime;
 
         if(m_lifeTime > LIFE_TIME)
         {          
