@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
 {    
-    private const string MAIN = "MainNewMap";
+    private const string MAIN = "Main";
     private const string INTRO = "IntroMenu";
     private const string LOSE = "LoseScene";
     private const string WIN = "WinScene";
