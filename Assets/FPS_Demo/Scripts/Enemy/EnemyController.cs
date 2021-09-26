@@ -13,9 +13,7 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        InvokeRepeating("Spawn", 0, 1);
-        
+        InvokeRepeating("Spawn", 0, 1);        
     }
     private void Spawn()
     {
@@ -26,6 +24,6 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 }
